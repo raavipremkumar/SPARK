@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>S_P_A_R_K</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style data-purpose="custom-fonts">
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Nunito:wght@300;400;600;700&display=swap');
+        
+        .font-serif { font-family: 'Cinzel', serif; }
+        .font-sans { font-family: 'Nunito', sans-serif; }
+    </style>
+    <style data-purpose="glassmorphism">
+        .glass-card { background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); } 
+        .glass-inner { background: rgba(255, 255, 255, 0.25); border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1); }
+        .glass-panel { 
+            background: rgba(255, 255, 255, 0.3); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1); 
+            border-radius: 1rem; 
+        }
+        .btn-on {
+            background: rgba(167, 243, 208, 0.6); 
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.5), 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn-off {
+            background: rgba(156, 163, 175, 0.4); 
+            box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 0 2px 5px rgba(0,0,0,0.1);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#cde4cd',
+                            darkgreen: '#2a4d35',
+                            lightgreen: '#b8dabf',
+                            text: '#1a2e21'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-brand-bg relative overflow-x-hidden flex flex-col items-center justify-center font-sans text-brand-text py-8 px-4 transition-all duration-500">
+    <!-- Background Image -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <img alt="Forest Background" class="w-full h-full object-cover object-bottom opacity-90 mix-blend-multiply" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIuXcIniwPEF4atI-3_NGhdKHMvK-TPxqivKuBkIatoIWXr50XqUcbrLJgmoh_3KXOLgFuqqzd2106MOCwIg4HgNtHQzogEMvdsaPM0jJ5LKf3jOczw89rnB4-3yXI4PSz1NCacaH1oFJrrhgWFc9o1AwHmLNCWB5DgmrrssVcdjkL08xMYf-t_Ai9-3t8xMbmbDrE05lqMx4QWudsL-Hd0CGUZAo2XJkH98RT3vAEE31mK7kq8lq4k41iNQhaGb_RTyZsdb-Z6vk"/>
+    </div>
+
+    <!-- ERROR MODAL -->
+    <div id="error-modal" class="fixed inset-0 z-50 hidden flex-col items-center justify-center bg-black/40 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div class="glass-inner rounded-2xl p-6 sm:p-8 max-w-sm w-full mx-4 flex flex-col items-center text-center shadow-2xl border border-white/50 bg-white/30">
+            <svg class="h-12 w-12 text-red-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <h3 class="text-xl font-bold text-brand-text mb-2">Invalid Credentials</h3>
+            <p class="text-brand-text/80 mb-6 text-sm">We couldn't find an account matching these details, or the password was incorrect.</p>
+            <div class="flex space-x-3 w-full">
+                <button id="closeModalBtn" class="flex-1 px-4 py-2 border border-brand-text/30 rounded-full text-brand-text/80 hover:bg-white/40 transition font-medium focus:outline-none focus:ring-2 focus:ring-brand-darkgreen">Try Again</button>
+                <button id="goToSignupModalBtn" class="flex-1 px-4 py-2 bg-brand-lightgreen text-brand-text rounded-full hover:bg-brand-lightgreen/90 transition shadow-md font-medium focus:outline-none focus:ring-2 focus:ring-brand-lightgreen">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: LOGIN -->
+    <main id="login-view" class="relative z-10 w-full max-w-md px-4 sm:px-6 transition-opacity duration-500 ease-in-out">
+        <div class="glass-card rounded-[2rem] p-4 sm:p-5 relative before:absolute before:inset-0 before:border before:border-white/40 before:rounded-[2rem] before:-m-2 before:-z-10">
+            <div class="glass-inner rounded-3xl p-8 sm:p-10 flex flex-col items-center">
+                <!-- Header / Logo -->
+                <header class="text-center mb-8 w-full">
+                    <h1 class="text-2xl sm:text-3xl font-serif tracking-widest mb-4">WELCOME TO</h1>
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="w-16 h-20 relative mb-4">
+                            <svg class="w-full h-full text-brand-text fill-none stroke-current stroke-[2] line-cap-round line-join-round" viewBox="0 0 100 120">
+                                <path d="M 40 10 C 20 10 20 50 50 60 C 80 70 80 110 60 110"></path>
+                                <path d="M 60 10 C 80 10 80 50 50 60 C 20 70 20 110 40 110"></path>
+                            </svg>
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-serif tracking-[0.3em]">S_P_A_R_K</h2>
+                    </div>
+                </header>
+
+                <!-- Login Form -->
+                <form class="w-full space-y-6" id="loginForm">
+                    <div>
+                        <label class="block text-sm font-medium text-brand-text/90" for="email">Email:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="email" name="email" type="email" autocomplete="email" required/>
+                    </div>
+                    <div class="pt-2">
+                        <label class="block text-sm font-medium text-brand-text/90" for="password">Password:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="password" name="password" type="password" required/>
+                    </div>
+                    <div class="flex items-start space-x-3 pt-4">
+                        <div class="flex items-center h-5 mt-1">
+                            <button id="termsToggle" aria-checked="false" class="bg-brand-text/40 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-darkgreen" role="switch" type="button">
+                                <span id="termsKnob" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gray-200 shadow ring-0 transition duration-200 ease-in-out"></span>
+                            </button>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label class="font-medium text-brand-text/80 leading-snug cursor-pointer select-none" id="termsLabel">Please accept the Terms and Conditions to continue</label>
+                        </div>
+                    </div>
+                    <div class="pt-6 space-y-4">
+                        <button id="loginBtn" class="w-full bg-brand-darkgreen hover:bg-brand-darkgreen/90 text-white font-medium py-3 px-4 rounded-full shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-brand-darkgreen disabled:opacity-50 disabled:cursor-not-allowed" type="submit" disabled>Login</button>
+                        
+                        <div class="relative flex py-2 items-center w-full">
+                            <div class="flex-grow border-t border-brand-text/30"></div>
+                            <span class="flex-shrink-0 mx-4 text-brand-text/50 text-xs font-bold">OR</span>
+                            <div class="flex-grow border-t border-brand-text/30"></div>
+                        </div>
+                        
+                        <button id="googleBtn" class="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" disabled>
+                            <svg class="h-5 w-5" viewBox="0 0 48 48">
+                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                            </svg>
+                            <span>Sign in with Google</span>
+                        </button>
+
+                        <p class="text-sm text-center text-brand-text/80 pt-2">
+                            Don't have an account? <a href="#" id="linkToSignup" class="font-bold underline hover:text-brand-darkgreen">Sign up</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW: SIGNUP -->
+    <main id="signup-view" class="relative z-10 w-full max-w-md px-4 sm:px-6 hidden opacity-0 transition-opacity duration-500 ease-in-out">
+        <div class="glass-card rounded-[2rem] p-4 sm:p-5 relative before:absolute before:inset-0 before:border before:border-white/40 before:rounded-[2rem] before:-m-2 before:-z-10">
+            <div class="glass-inner rounded-3xl p-8 sm:p-10 flex flex-col items-center">
+                <!-- Header / Logo -->
+                <header class="text-center mb-8 w-full">
+                    <h1 class="text-2xl sm:text-3xl font-serif tracking-widest mb-4">CREATE ACCOUNT</h1>
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="w-12 h-16 relative mb-4">
+                            <svg class="w-full h-full text-brand-text fill-none stroke-current stroke-[2] line-cap-round line-join-round" viewBox="0 0 100 120">
+                                <path d="M 40 10 C 20 10 20 50 50 60 C 80 70 80 110 60 110"></path>
+                                <path d="M 60 10 C 80 10 80 50 50 60 C 20 70 20 110 40 110"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Signup Form -->
+                <form class="w-full space-y-6" id="signupForm">
+                    <div>
+                        <label class="block text-sm font-medium text-brand-text/90" for="signup-email">Email:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="signup-email" name="email" type="email" autocomplete="email" required/>
+                    </div>
+                    <div class="pt-2">
+                        <label class="block text-sm font-medium text-brand-text/90" for="signup-password">Password:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="signup-password" name="password" type="password" required/>
+                    </div>
+                    <div class="flex items-start space-x-3 pt-4">
+                        <div class="flex items-center h-5 mt-1">
+                            <button id="signup-termsToggle" aria-checked="false" class="bg-brand-text/40 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-darkgreen" role="switch" type="button">
+                                <span id="signup-termsKnob" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gray-200 shadow ring-0 transition duration-200 ease-in-out"></span>
+                            </button>
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label class="font-medium text-brand-text/80 leading-snug cursor-pointer select-none" id="signup-termsLabel">Please accept the Terms and Conditions to continue</label>
+                        </div>
+                    </div>
+                    <div class="pt-6 space-y-4">
+                        <button id="submitSignupBtn" class="w-full bg-brand-lightgreen hover:bg-brand-lightgreen/90 text-brand-text font-medium py-3 px-4 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-brand-lightgreen disabled:opacity-50 disabled:cursor-not-allowed" type="submit" disabled>Sign Up</button>
+                        
+                        <div class="relative flex py-2 items-center w-full">
+                            <div class="flex-grow border-t border-brand-text/30"></div>
+                            <span class="flex-shrink-0 mx-4 text-brand-text/50 text-xs font-bold">OR</span>
+                            <div class="flex-grow border-t border-brand-text/30"></div>
+                        </div>
+                        
+                        <button id="signupGoogleBtn" class="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" disabled>
+                            <svg class="h-5 w-5" viewBox="0 0 48 48">
+                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                            </svg>
+                            <span>Sign in with Google</span>
+                        </button>
+
+                        <p class="text-sm text-center text-brand-text/80 pt-2">
+                            Already have an account? <a href="#" id="linkToLogin" class="font-bold underline hover:text-brand-darkgreen">Login</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- VIEW: DASHBOARD -->
+    <div id="dashboard-view" class="relative z-10 w-full max-w-lg hidden opacity-0 transition-opacity duration-500 ease-in-out flex-col items-center">
+        <!-- Top Navigation / Title -->
+        <header class="w-full flex flex-col items-center justify-center mb-6 relative">
+            <h1 class="text-3xl sm:text-4xl font-serif tracking-[0.4em] text-brand-text font-medium">S_P_A_R_K</h1>
+            <button id="logoutBtn" class="absolute right-0 top-1 text-brand-text/70 hover:text-brand-text transition-colors focus:outline-none" title="Sign Out">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
+            </button>
+        </header>
+
+        <!-- Main Dashboard Container -->
+        <main class="w-full space-y-4">
+            
+            <!-- Row 1: Voltage & Current -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Voltage (Volts)</span>
+                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-voltage">- <span class="text-2xl sm:text-3xl font-medium">V</span></div>
+                </div>
+                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Current (Amps)</span>
+                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2" stroke-linecap="round" stroke-linejoin="round" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4" /><path stroke-linecap="round" stroke-linejoin="round" d="M8 12a4 4 0 0 1 8 0" /></svg>
+                    </div>
+                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-current">- <span class="text-2xl sm:text-3xl font-medium">A</span></div>
+                </div>
+            </div>
+
+            <!-- Row 2: Power -->
+            <div class="glass-panel p-4 flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors">
+                <div class="w-full flex justify-between items-start absolute top-4 left-0 px-4">
+                    <span class="text-sm sm:text-base font-medium text-brand-text/90">Power (Watts)</span>
+                    <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                </div>
+                <div class="mt-8 mb-2 text-4xl sm:text-5xl font-semibold tracking-tight text-brand-text" id="val-power">- <span class="text-3xl sm:text-4xl font-medium">W</span></div>
+            </div>
+
+            <!-- Row 3: Energy -->
+            <div class="glass-panel p-4 flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors">
+                <div class="w-full flex justify-between items-start absolute top-4 left-0 px-4">
+                    <span class="text-sm sm:text-base font-medium text-brand-text/90">Energy (Joules)</span>
+                    <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="m11.5 6.5-3 5h4l-1 5" /></svg>
+                </div>
+                <div class="mt-8 mb-2 text-4xl sm:text-5xl font-semibold tracking-tight text-brand-text" id="val-energy">- <span class="text-3xl sm:text-4xl font-medium">J</span></div>
+            </div>
+
+            <!-- Row 4: Bill -->
+            <div class="glass-panel p-4 flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors">
+                <div class="w-full flex justify-between items-start absolute top-4 left-0 px-4">
+                    <span class="text-sm sm:text-base font-medium text-brand-text/90">Bill (Rupees)</span>
+                    <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+                </div>
+                <div class="mt-8 mb-2 text-4xl sm:text-5xl font-semibold tracking-tight text-brand-text flex items-center gap-2" id="val-bill"><span class="text-3xl sm:text-4xl font-semibold">₹</span> -</div>
+            </div>
+
+            <!-- Row 5: Load Control -->
+            <div class="glass-panel p-4 flex items-center justify-between">
+                <span class="text-lg sm:text-xl font-medium text-brand-text ml-2">Load</span>
+                <div class="flex items-center space-x-2 mr-2">
+                    <button id="btn-load-on" class="btn-on border border-emerald-300/50 rounded-full px-6 py-2 flex items-center space-x-2 text-brand-text font-medium transition-transform active:scale-95 focus:outline-none">
+                        <span>ON</span>
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </button>
+                    <button id="btn-load-off" class="glass-panel !rounded-full !shadow-none border border-gray-400/30 px-6 py-2 flex items-center space-x-2 text-brand-text/80 font-medium transition-transform active:scale-95 focus:outline-none hover:bg-white/30">
+                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" /></svg>
+                        <span>OFF</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 6: Temperature & Humidity -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Temperature (°C)</span>
+                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19c-1.657 0-3-1.343-3-3 0-1.313.826-2.43 2-2.828V5a3 3 0 116 0v8.172c1.174.398 2 1.515 2 2.828 0 1.657-1.343 3-3 3H9z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01" /></svg>
+                    </div>
+                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-temp">- <span class="text-2xl sm:text-3xl font-medium">°C</span></div>
+                </div>
+                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Humidity (%)</span>
+                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                    </div>
+                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-humidity">- <span class="text-2xl sm:text-3xl font-medium">%</span></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- MAIN SCRIPT -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+        import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
+
+        // ==========================================
+        // Firebase Setup
+        // ==========================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmQ1EGoJ4xp56j5ROdfSWQzPXtNjsCsKE",
+            authDomain: "spark-4446c.firebaseapp.com",
+            projectId: "spark-4446c",
+            storageBucket: "spark-4446c.firebasestorage.app",
+            messagingSenderId: "968551072918",
+            appId: "1:968551072918:web:fa676c192badeacfe32eb7",
+            measurementId: "G-C8SYTGHPC4"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+        let database = null;
+        try {
+            database = getDatabase(app);
+        } catch(e) {
+            console.error("Firebase Database initialization failed:", e);
+        }
+
+        // ==========================================
+        // View Routing & UI Logic
+        // ==========================================
+        const loginView = document.getElementById('login-view');
+        const signupView = document.getElementById('signup-view');
+        const dashboardView = document.getElementById('dashboard-view');
+        const errorModal = document.getElementById('error-modal');
+
+        // Navigation links
+        document.getElementById('linkToSignup').addEventListener('click', (e) => {
+            e.preventDefault();
+            switchView(loginView, signupView);
+        });
+        document.getElementById('linkToLogin').addEventListener('click', (e) => {
+            e.preventDefault();
+            switchView(signupView, loginView);
+        });
+        
+        // Modal logic
+        document.getElementById('closeModalBtn').addEventListener('click', hideErrorModal);
+        document.getElementById('goToSignupModalBtn').addEventListener('click', () => {
+            hideErrorModal();
+            if(!loginView.classList.contains('hidden')) {
+                switchView(loginView, signupView);
+            }
+        });
+
+        function showErrorModal() {
+            errorModal.classList.remove('hidden');
+            errorModal.classList.add('flex');
+            void errorModal.offsetWidth; // reflow
+            errorModal.classList.remove('opacity-0');
+            errorModal.classList.add('opacity-100');
+        }
+
+        function hideErrorModal() {
+            errorModal.classList.add('opacity-0');
+            errorModal.classList.remove('opacity-100');
+            setTimeout(() => {
+                errorModal.classList.add('hidden');
+                errorModal.classList.remove('flex');
+            }, 300);
+        }
+
+        function switchView(fromElement, toElement) {
+            fromElement.classList.add('opacity-0');
+            setTimeout(() => {
+                fromElement.classList.add('hidden');
+                toElement.classList.remove('hidden');
+                void toElement.offsetWidth;
+                toElement.classList.remove('opacity-0');
+            }, 500);
+        }
+
+        function showDashboardFromAuth() {
+            // Either coming from login or signup
+            const activeView = !loginView.classList.contains('hidden') ? loginView : 
+                              (!signupView.classList.contains('hidden') ? signupView : null);
+            
+            if(activeView) {
+                activeView.classList.add('opacity-0');
+                setTimeout(() => {
+                    activeView.classList.add('hidden');
+                    document.body.classList.remove('justify-center');
+                    dashboardView.classList.remove('hidden');
+                    dashboardView.classList.add('flex');
+                    void dashboardView.offsetWidth;
+                    dashboardView.classList.remove('opacity-0');
+                }, 500);
+            } else if(dashboardView.classList.contains('hidden')) {
+                document.body.classList.remove('justify-center');
+                dashboardView.classList.remove('hidden');
+                dashboardView.classList.add('flex');
+                void dashboardView.offsetWidth;
+                dashboardView.classList.remove('opacity-0');
+            }
+        }
+
+        function showAuthFromDashboard() {
+            dashboardView.classList.add('opacity-0');
+            setTimeout(() => {
+                dashboardView.classList.add('hidden');
+                dashboardView.classList.remove('flex');
+                document.body.classList.add('justify-center');
+                loginView.classList.remove('hidden');
+                void loginView.offsetWidth;
+                loginView.classList.remove('opacity-0');
+            }, 500);
+        }
+
+        // ==========================================
+        // Login Logic
+        // ==========================================
+        let loginTermsAccepted = false;
+        const toggleBtn = document.getElementById('termsToggle');
+        const toggleKnob = document.getElementById('termsKnob');
+        const loginBtn = document.getElementById('loginBtn');
+        const googleBtn = document.getElementById('googleBtn');
+        const loginForm = document.getElementById('loginForm');
+
+        function toggleLoginTerms() {
+            loginTermsAccepted = !loginTermsAccepted;
+            toggleBtn.setAttribute('aria-checked', loginTermsAccepted);
+            
+            if(loginTermsAccepted) {
+                toggleBtn.classList.replace('bg-brand-text/40', 'bg-brand-darkgreen');
+                toggleKnob.classList.replace('translate-x-0', 'translate-x-5');
+                toggleKnob.classList.replace('bg-gray-200', 'bg-brand-lightgreen');
+            } else {
+                toggleBtn.classList.replace('bg-brand-darkgreen', 'bg-brand-text/40');
+                toggleKnob.classList.replace('translate-x-5', 'translate-x-0');
+                toggleKnob.classList.replace('bg-brand-lightgreen', 'bg-gray-200');
+            }
+            loginBtn.disabled = !loginTermsAccepted;
+            googleBtn.disabled = !loginTermsAccepted;
+        }
+
+        toggleBtn.addEventListener('click', toggleLoginTerms);
+        document.getElementById('termsLabel').addEventListener('click', toggleLoginTerms);
+
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(loginTermsAccepted) {
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                loginBtn.disabled = true;
+                loginBtn.textContent = 'Logging in...';
+                try {
+                    await signInWithEmailAndPassword(auth, email, password);
+                } catch(error) {
+                    if (error.code === 'auth/invalid-credential' || error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password') {
+                        showErrorModal();
+                    } else {
+                        alert(error.message);
+                    }
+                } finally {
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Login';
+                }
+            }
+        });
+
+        googleBtn.addEventListener('click', async () => {
+            if(loginTermsAccepted) {
+                googleBtn.disabled = true;
+                try {
+                    await signInWithPopup(auth, googleProvider);
+                } catch(error) {
+                    alert(error.message);
+                } finally {
+                    googleBtn.disabled = false;
+                }
+            }
+        });
+
+        // ==========================================
+        // Signup Logic
+        // ==========================================
+        let signupTermsAccepted = false;
+        const signupToggleBtn = document.getElementById('signup-termsToggle');
+        const signupToggleKnob = document.getElementById('signup-termsKnob');
+        const submitSignupBtn = document.getElementById('submitSignupBtn');
+        const signupGoogleBtn = document.getElementById('signupGoogleBtn');
+        const signupForm = document.getElementById('signupForm');
+
+        function toggleSignupTerms() {
+            signupTermsAccepted = !signupTermsAccepted;
+            signupToggleBtn.setAttribute('aria-checked', signupTermsAccepted);
+            
+            if(signupTermsAccepted) {
+                signupToggleBtn.classList.replace('bg-brand-text/40', 'bg-brand-darkgreen');
+                signupToggleKnob.classList.replace('translate-x-0', 'translate-x-5');
+                signupToggleKnob.classList.replace('bg-gray-200', 'bg-brand-lightgreen');
+            } else {
+                signupToggleBtn.classList.replace('bg-brand-darkgreen', 'bg-brand-text/40');
+                signupToggleKnob.classList.replace('translate-x-5', 'translate-x-0');
+                signupToggleKnob.classList.replace('bg-brand-lightgreen', 'bg-gray-200');
+            }
+            submitSignupBtn.disabled = !signupTermsAccepted;
+            signupGoogleBtn.disabled = !signupTermsAccepted;
+        }
+
+        signupToggleBtn.addEventListener('click', toggleSignupTerms);
+        document.getElementById('signup-termsLabel').addEventListener('click', toggleSignupTerms);
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(signupTermsAccepted) {
+                const email = document.getElementById('signup-email').value;
+                const password = document.getElementById('signup-password').value;
+                submitSignupBtn.disabled = true;
+                submitSignupBtn.textContent = 'Creating account...';
+                try {
+                    await createUserWithEmailAndPassword(auth, email, password);
+                } catch(error) {
+                    alert(error.message);
+                } finally {
+                    submitSignupBtn.disabled = false;
+                    submitSignupBtn.textContent = 'Sign Up';
+                }
+            }
+        });
+
+        signupGoogleBtn.addEventListener('click', async () => {
+            if(signupTermsAccepted) {
+                signupGoogleBtn.disabled = true;
+                try {
+                    await signInWithPopup(auth, googleProvider);
+                } catch(error) {
+                    alert(error.message);
+                } finally {
+                    signupGoogleBtn.disabled = false;
+                }
+            }
+        });
+
+        // ==========================================
+        // Auth State Tracker
+        // ==========================================
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth);
+        });
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                showDashboardFromAuth();
+            } else {
+                if(!dashboardView.classList.contains('hidden')) {
+                    showAuthFromDashboard();
+                }
+            }
+        });
+
+        // ==========================================
+        // Dashboard Hardware Listeners
+        // ==========================================
+        const ui = {
+            v: document.getElementById('val-voltage'),
+            i: document.getElementById('val-current'),
+            p: document.getElementById('val-power'),
+            e: document.getElementById('val-energy'),
+            b: document.getElementById('val-bill'),
+            t: document.getElementById('val-temp'),
+            h: document.getElementById('val-humidity'),
+            btnOn: document.getElementById('btn-load-on'),
+            btnOff: document.getElementById('btn-load-off')
+        };
+        
+        let loadState = true; 
+
+        function updateLoadUI() {
+            if (loadState) {
+                ui.btnOn.classList.add('btn-on', 'border-emerald-300/50', 'text-brand-text');
+                ui.btnOn.classList.remove('glass-panel', '!shadow-none', 'border-gray-400/30', 'text-brand-text/80');
+                ui.btnOff.classList.add('glass-panel', '!shadow-none', 'border-gray-400/30', 'text-brand-text/80');
+                ui.btnOff.classList.remove('btn-off', 'border-gray-400/50', 'text-brand-text');
+            } else {
+                ui.btnOn.classList.add('glass-panel', '!shadow-none', 'border-gray-400/30', 'text-brand-text/80');
+                ui.btnOn.classList.remove('btn-on', 'border-emerald-300/50', 'text-brand-text');
+                ui.btnOff.classList.add('btn-off', 'border-gray-400/50', 'text-brand-text');
+                ui.btnOff.classList.remove('glass-panel', '!shadow-none', 'border-gray-400/30', 'text-brand-text/80');
+            }
+        }
+
+        ui.btnOn.addEventListener('click', () => {
+            if(database) set(ref(database, 'control/load'), true);
+        });
+        ui.btnOff.addEventListener('click', () => {
+            if(database) set(ref(database, 'control/load'), false);
+        });
+
+        if(database) {
+            onValue(ref(database, 'energy'), (snapshot) => {
+                const data = snapshot.val();
+                if(data) {
+                    if(data.voltage !== undefined) ui.v.innerHTML = `${data.voltage} <span class="text-2xl sm:text-3xl font-medium">V</span>`;
+                    if(data.current !== undefined) ui.i.innerHTML = `${data.current} <span class="text-2xl sm:text-3xl font-medium">A</span>`;
+                    if(data.power !== undefined) ui.p.innerHTML = `${data.power} <span class="text-3xl sm:text-4xl font-medium">W</span>`;
+                    if(data.energy !== undefined) ui.e.innerHTML = `${Number(data.energy).toLocaleString()} <span class="text-3xl sm:text-4xl font-medium">J</span>`;
+                    if(data.bill !== undefined) ui.b.innerHTML = `<span class="text-3xl sm:text-4xl font-semibold">₹</span> ${Number(data.bill).toFixed(2)}`;
+                }
+            });
+
+            onValue(ref(database, 'environment'), (snapshot) => {
+                const data = snapshot.val();
+                if(data) {
+                    if(data.temperature !== undefined) ui.t.innerHTML = `${data.temperature} <span class="text-2xl sm:text-3xl font-medium">°C</span>`;
+                    if(data.humidity !== undefined) ui.h.innerHTML = `${data.humidity} <span class="text-2xl sm:text-3xl font-medium">%</span>`;
+                }
+            });
+
+            onValue(ref(database, 'control'), (snapshot) => {
+                const data = snapshot.val();
+                if(data && data.load !== undefined) {
+                    loadState = data.load;
+                    updateLoadUI();
+                }
+            });
+        }
+    </script>
+</body>
+</html>
