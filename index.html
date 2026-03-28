@@ -70,54 +70,54 @@
     </div>
 
     <!-- VIEW: LOGIN -->
-    <main id="login-view" class="relative z-10 w-full max-w-md px-4 sm:px-6 transition-opacity duration-500 ease-in-out">
-        <div class="glass-card rounded-[2rem] p-4 sm:p-5 relative before:absolute before:inset-0 before:border before:border-white/40 before:rounded-[2rem] before:-m-2 before:-z-10">
-            <div class="glass-inner rounded-3xl p-8 sm:p-10 flex flex-col items-center">
+    <main id="login-view" class="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-xl px-4 sm:px-6 md:px-8 transition-opacity duration-500 ease-in-out">
+        <div class="glass-card rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-5 md:p-6 lg:p-8 relative before:absolute before:inset-0 before:border before:border-white/40 before:rounded-[2rem] sm:before:rounded-[2.5rem] before:-m-2 before:-z-10">
+            <div class="glass-inner rounded-3xl sm:rounded-[2rem] p-8 sm:p-10 md:p-12 lg:p-14 flex flex-col items-center">
                 <!-- Header / Logo -->
-                <header class="text-center mb-8 w-full">
-                    <h1 class="text-2xl sm:text-3xl font-serif tracking-widest mb-4">WELCOME TO</h1>
+                <header class="text-center mb-8 md:mb-10 lg:mb-12 w-full">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif tracking-widest mb-4 md:mb-6">WELCOME TO</h1>
                     <div class="flex flex-col items-center justify-center">
-                        <div class="w-16 h-20 relative mb-4">
+                        <div class="w-16 h-20 sm:w-20 sm:h-24 md:w-24 md:h-28 relative mb-4 md:mb-6">
                             <svg class="w-full h-full text-brand-text fill-none stroke-current stroke-[2] line-cap-round line-join-round" viewBox="0 0 100 120">
                                 <circle cx="50" cy="60" r="48" stroke="currentColor" stroke-width="1.5" fill="none"></circle>
                                 <text x="50" y="64" text-anchor="middle" dominant-baseline="central" class="font-serif" font-size="64" fill="currentColor" stroke="none">S</text>
                             </svg>
                         </div>
-                        <h2 class="text-xl sm:text-2xl font-serif tracking-[0.3em]">S_P_A_R_K</h2>
+                        <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif tracking-[0.3em]">S_P_A_R_K</h2>
                     </div>
                 </header>
 
                 <!-- Login Form -->
-                <form class="w-full space-y-6" id="loginForm">
+                <form class="w-full space-y-6 md:space-y-8" id="loginForm">
                     <div>
-                        <label class="block text-sm font-medium text-brand-text/90" for="email">Email:</label>
-                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="email" name="email" type="email" autocomplete="email" required/>
+                        <label class="block text-sm sm:text-base md:text-lg font-medium text-brand-text/90" for="email">Email:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 md:py-3 text-base sm:text-lg md:text-xl transition-colors outline-none" id="email" name="email" type="email" autocomplete="email" required/>
                     </div>
-                    <div class="pt-2">
-                        <label class="block text-sm font-medium text-brand-text/90" for="password">Password:</label>
-                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="password" name="password" type="password" required/>
+                    <div class="pt-2 md:pt-4">
+                        <label class="block text-sm sm:text-base md:text-lg font-medium text-brand-text/90" for="password">Password:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 md:py-3 text-base sm:text-lg md:text-xl transition-colors outline-none" id="password" name="password" type="password" required/>
                     </div>
-                    <div class="flex items-start space-x-3 pt-4">
-                        <div class="flex items-center h-5 mt-1">
-                            <button id="termsToggle" aria-checked="false" class="bg-brand-text/40 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-darkgreen" role="switch" type="button">
+                    <div class="flex items-start space-x-3 pt-4 md:pt-6">
+                        <div class="flex items-center h-5 mt-1 flex-shrink-0">
+                            <button id="termsToggle" aria-checked="false" class="bg-brand-text/40 relative inline-flex h-6 w-11 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-darkgreen" role="switch" type="button">
                                 <span id="termsKnob" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gray-200 shadow ring-0 transition duration-200 ease-in-out"></span>
                             </button>
                         </div>
-                        <div class="ml-3 text-sm">
+                        <div class="ml-3 sm:ml-4 text-sm sm:text-base md:text-lg">
                             <label class="font-medium text-brand-text/80 leading-snug cursor-pointer select-none" id="termsLabel">Please accept the Terms and Conditions to continue</label>
                         </div>
                     </div>
-                    <div class="pt-6 space-y-4">
-                        <button id="loginBtn" class="w-full bg-brand-darkgreen hover:bg-brand-darkgreen/90 text-white font-medium py-3 px-4 rounded-full shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-brand-darkgreen disabled:opacity-50 disabled:cursor-not-allowed" type="submit" disabled>Login</button>
+                    <div class="pt-6 md:pt-8 space-y-4 md:space-y-6">
+                        <button id="loginBtn" class="w-full bg-brand-darkgreen hover:bg-brand-darkgreen/90 text-white font-medium py-3 sm:py-4 px-4 sm:px-6 rounded-full shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-brand-darkgreen disabled:opacity-50 disabled:cursor-not-allowed md:text-lg lg:text-xl" type="submit" disabled>Login</button>
                         
-                        <div class="relative flex py-2 items-center w-full">
+                        <div class="relative flex py-2 md:py-4 items-center w-full">
                             <div class="flex-grow border-t border-brand-text/30"></div>
-                            <span class="flex-shrink-0 mx-4 text-brand-text/50 text-xs font-bold">OR</span>
+                            <span class="flex-shrink-0 mx-4 text-brand-text/50 text-xs sm:text-sm md:text-base font-bold">OR</span>
                             <div class="flex-grow border-t border-brand-text/30"></div>
                         </div>
                         
-                        <button id="googleBtn" class="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" disabled>
-                            <svg class="h-5 w-5" viewBox="0 0 48 48">
+                        <button id="googleBtn" class="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 sm:py-4 px-4 sm:px-6 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center space-x-3 md:space-x-4 disabled:opacity-50 disabled:cursor-not-allowed md:text-lg lg:text-xl" type="button" disabled>
+                            <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 48 48">
                                 <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                                 <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                                 <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
@@ -126,7 +126,7 @@
                             <span>Sign in with Google</span>
                         </button>
 
-                        <p class="text-sm text-center text-brand-text/80 pt-2">
+                        <p class="text-sm sm:text-base md:text-lg text-center text-brand-text/80 pt-2 md:pt-4">
                             Don't have an account? <a href="#" id="linkToSignup" class="font-bold underline hover:text-brand-darkgreen">Sign up</a>
                         </p>
                     </div>
@@ -136,14 +136,14 @@
     </main>
 
     <!-- VIEW: SIGNUP -->
-    <main id="signup-view" class="relative z-10 w-full max-w-md px-4 sm:px-6 hidden opacity-0 transition-opacity duration-500 ease-in-out">
-        <div class="glass-card rounded-[2rem] p-4 sm:p-5 relative before:absolute before:inset-0 before:border before:border-white/40 before:rounded-[2rem] before:-m-2 before:-z-10">
-            <div class="glass-inner rounded-3xl p-8 sm:p-10 flex flex-col items-center">
+    <main id="signup-view" class="relative z-10 w-full max-w-md md:max-w-lg lg:max-w-xl px-4 sm:px-6 md:px-8 hidden opacity-0 transition-opacity duration-500 ease-in-out">
+        <div class="glass-card rounded-[2rem] sm:rounded-[2.5rem] p-4 sm:p-5 md:p-6 lg:p-8 relative before:absolute before:inset-0 before:border before:border-white/40 before:rounded-[2rem] sm:before:rounded-[2.5rem] before:-m-2 before:-z-10">
+            <div class="glass-inner rounded-3xl sm:rounded-[2rem] p-8 sm:p-10 md:p-12 lg:p-14 flex flex-col items-center">
                 <!-- Header / Logo -->
-                <header class="text-center mb-8 w-full">
-                    <h1 class="text-2xl sm:text-3xl font-serif tracking-widest mb-4">CREATE ACCOUNT</h1>
+                <header class="text-center mb-8 md:mb-10 lg:mb-12 w-full">
+                    <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif tracking-widest mb-4 md:mb-6">CREATE ACCOUNT</h1>
                     <div class="flex flex-col items-center justify-center">
-                        <div class="w-12 h-16 relative mb-4">
+                        <div class="w-12 h-16 sm:w-16 sm:h-20 md:w-20 md:h-24 relative mb-4 md:mb-6">
                             <svg class="w-full h-full text-brand-text fill-none stroke-current stroke-[2] line-cap-round line-join-round" viewBox="0 0 100 120">
                                 <path d="M 40 10 C 20 10 20 50 50 60 C 80 70 80 110 60 110"></path>
                                 <path d="M 60 10 C 80 10 80 50 50 60 C 20 70 20 110 40 110"></path>
@@ -153,36 +153,36 @@
                 </header>
 
                 <!-- Signup Form -->
-                <form class="w-full space-y-6" id="signupForm">
+                <form class="w-full space-y-6 md:space-y-8" id="signupForm">
                     <div>
-                        <label class="block text-sm font-medium text-brand-text/90" for="signup-email">Email:</label>
-                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="signup-email" name="email" type="email" autocomplete="email" required/>
+                        <label class="block text-sm sm:text-base md:text-lg font-medium text-brand-text/90" for="signup-email">Email:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 md:py-3 text-base sm:text-lg md:text-xl transition-colors outline-none" id="signup-email" name="email" type="email" autocomplete="email" required/>
                     </div>
-                    <div class="pt-2">
-                        <label class="block text-sm font-medium text-brand-text/90" for="signup-password">Password:</label>
-                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 text-base transition-colors outline-none" id="signup-password" name="password" type="password" required/>
+                    <div class="pt-2 md:pt-4">
+                        <label class="block text-sm sm:text-base md:text-lg font-medium text-brand-text/90" for="signup-password">Password:</label>
+                        <input class="w-full bg-transparent border-0 border-b border-brand-text/50 focus:ring-0 focus:border-brand-text px-0 py-2 md:py-3 text-base sm:text-lg md:text-xl transition-colors outline-none" id="signup-password" name="password" type="password" required/>
                     </div>
-                    <div class="flex items-start space-x-3 pt-4">
-                        <div class="flex items-center h-5 mt-1">
-                            <button id="signup-termsToggle" aria-checked="false" class="bg-brand-text/40 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-darkgreen" role="switch" type="button">
+                    <div class="flex items-start space-x-3 md:space-x-4 pt-4 md:pt-6">
+                        <div class="flex items-center h-5 mt-1 flex-shrink-0">
+                            <button id="signup-termsToggle" aria-checked="false" class="bg-brand-text/40 relative inline-flex h-6 w-11 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-darkgreen" role="switch" type="button">
                                 <span id="signup-termsKnob" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-gray-200 shadow ring-0 transition duration-200 ease-in-out"></span>
                             </button>
                         </div>
-                        <div class="ml-3 text-sm">
+                        <div class="ml-3 sm:ml-4 text-sm sm:text-base md:text-lg">
                             <label class="font-medium text-brand-text/80 leading-snug cursor-pointer select-none" id="signup-termsLabel">Please accept the Terms and Conditions to continue</label>
                         </div>
                     </div>
-                    <div class="pt-6 space-y-4">
-                        <button id="submitSignupBtn" class="w-full bg-brand-lightgreen hover:bg-brand-lightgreen/90 text-brand-text font-medium py-3 px-4 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-brand-lightgreen disabled:opacity-50 disabled:cursor-not-allowed" type="submit" disabled>Sign Up</button>
+                    <div class="pt-6 md:pt-8 space-y-4 md:space-y-6">
+                        <button id="submitSignupBtn" class="w-full bg-brand-lightgreen hover:bg-brand-lightgreen/90 text-brand-text font-medium py-3 sm:py-4 px-4 sm:px-6 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-brand-lightgreen disabled:opacity-50 disabled:cursor-not-allowed md:text-lg lg:text-xl" type="submit" disabled>Sign Up</button>
                         
-                        <div class="relative flex py-2 items-center w-full">
+                        <div class="relative flex py-2 md:py-4 items-center w-full">
                             <div class="flex-grow border-t border-brand-text/30"></div>
-                            <span class="flex-shrink-0 mx-4 text-brand-text/50 text-xs font-bold">OR</span>
+                            <span class="flex-shrink-0 mx-4 text-brand-text/50 text-xs sm:text-sm md:text-base font-bold">OR</span>
                             <div class="flex-grow border-t border-brand-text/30"></div>
                         </div>
                         
-                        <button id="signupGoogleBtn" class="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 px-4 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center space-x-3 disabled:opacity-50 disabled:cursor-not-allowed" type="button" disabled>
-                            <svg class="h-5 w-5" viewBox="0 0 48 48">
+                        <button id="signupGoogleBtn" class="w-full bg-white hover:bg-gray-50 text-gray-700 font-medium py-3 sm:py-4 px-4 sm:px-6 rounded-full shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-gray-200 flex items-center justify-center space-x-3 md:space-x-4 disabled:opacity-50 disabled:cursor-not-allowed md:text-lg lg:text-xl" type="button" disabled>
+                            <svg class="h-5 w-5 sm:h-6 sm:w-6" viewBox="0 0 48 48">
                                 <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
                                 <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
                                 <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
@@ -191,7 +191,7 @@
                             <span>Sign in with Google</span>
                         </button>
 
-                        <p class="text-sm text-center text-brand-text/80 pt-2">
+                        <p class="text-sm sm:text-base md:text-lg text-center text-brand-text/80 pt-2 md:pt-4">
                             Already have an account? <a href="#" id="linkToLogin" class="font-bold underline hover:text-brand-darkgreen">Login</a>
                         </p>
                     </div>
@@ -201,93 +201,87 @@
     </main>
 
     <!-- VIEW: DASHBOARD -->
-    <div id="dashboard-view" class="relative z-10 w-full max-w-lg hidden opacity-0 transition-opacity duration-500 ease-in-out flex-col items-center">
+    <div id="dashboard-view" class="relative z-10 w-full max-w-5xl px-2 sm:px-4 lg:px-6 hidden opacity-0 transition-opacity duration-500 ease-in-out flex-col items-center">
         <!-- Top Navigation / Title -->
         <header class="w-full flex flex-col items-center justify-center mb-6 relative">
-            <h1 class="text-3xl sm:text-4xl font-serif tracking-[0.4em] text-brand-text font-medium">S_P_A_R_K</h1>
+            <h1 class="text-3xl sm:text-4xl font-serif tracking-[0.4em] text-brand-text font-medium mt-2">S_P_A_R_K</h1>
+            <h2 id="user-greeting" class="text-lg sm:text-xl font-semibold text-brand-text/90 uppercase mt-2 tracking-widest text-center shadow-sm py-1 px-4 rounded-full border border-brand-text/10 bg-white/20 backdrop-blur-md">HI, USER</h2>
             <button id="logoutBtn" class="absolute right-0 top-1 text-brand-text/70 hover:text-brand-text transition-colors focus:outline-none" title="Sign Out">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
             </button>
         </header>
 
         <!-- Main Dashboard Container -->
-        <main class="w-full space-y-4">
+        <main class="w-full grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-5 pb-8">
+            <!-- Row 1 & 2 (Responsive Grid): V, A, W, J, Temp, Humidity -->
+            <div class="glass-panel p-4 sm:p-5 flex flex-col justify-between hover:bg-white/40 transition-colors aspect-auto h-28 sm:h-36">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-xs sm:text-sm md:text-base font-medium text-brand-text/90">Voltage</span>
+                    <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                </div>
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-brand-text" id="val-voltage">-- <span class="text-lg sm:text-xl lg:text-2xl font-medium">V</span></div>
+            </div>
             
-            <!-- Row 1: Voltage & Current -->
-            <div class="grid grid-cols-2 gap-4">
-                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Voltage (Volts)</span>
-                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                    </div>
-                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-voltage">- <span class="text-2xl sm:text-3xl font-medium">V</span></div>
+            <div class="glass-panel p-4 sm:p-5 flex flex-col justify-between hover:bg-white/40 transition-colors aspect-auto h-28 sm:h-36">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-xs sm:text-sm md:text-base font-medium text-brand-text/90">Current</span>
+                    <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2" stroke-linecap="round" stroke-linejoin="round" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4" /><path stroke-linecap="round" stroke-linejoin="round" d="M8 12a4 4 0 0 1 8 0" /></svg>
                 </div>
-                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Current (Amps)</span>
-                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="2" stroke-linecap="round" stroke-linejoin="round" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 16v-4" /><path stroke-linecap="round" stroke-linejoin="round" d="M8 12a4 4 0 0 1 8 0" /></svg>
-                    </div>
-                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-current">- <span class="text-2xl sm:text-3xl font-medium">A</span></div>
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-brand-text" id="val-current">-- <span class="text-lg sm:text-xl lg:text-2xl font-medium">A</span></div>
+            </div>
+
+            <div class="glass-panel p-4 sm:p-5 flex flex-col justify-between hover:bg-white/40 transition-colors aspect-auto h-28 sm:h-36">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-xs sm:text-sm md:text-base font-medium text-brand-text/90">Power</span>
+                    <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+                </div>
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-brand-text" id="val-power">-- <span class="text-lg sm:text-xl lg:text-2xl font-medium">W</span></div>
+            </div>
+            
+            <div class="glass-panel p-4 sm:p-5 flex flex-col justify-between hover:bg-white/40 transition-colors aspect-auto h-28 sm:h-36">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-xs sm:text-sm md:text-base font-medium text-brand-text/90">Energy</span>
+                    <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="m11.5 6.5-3 5h4l-1 5" /></svg>
+                </div>
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-brand-text" id="val-energy">-- <span class="text-lg sm:text-xl lg:text-2xl font-medium">J</span></div>
+            </div>
+
+            <div class="glass-panel p-4 sm:p-5 flex flex-col justify-between hover:bg-white/40 transition-colors aspect-auto h-28 sm:h-36">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-xs sm:text-sm md:text-base font-medium text-brand-text/90">Temp.</span>
+                    <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19c-1.657 0-3-1.343-3-3 0-1.313.826-2.43 2-2.828V5a3 3 0 116 0v8.172c1.174.398 2 1.515 2 2.828 0 1.657-1.343 3-3 3H9z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01" /></svg>
+                </div>
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-brand-text" id="val-temp">-- <span class="text-lg sm:text-xl lg:text-2xl font-medium">°C</span></div>
+            </div>
+            
+            <div class="glass-panel p-4 sm:p-5 flex flex-col justify-between hover:bg-white/40 transition-colors aspect-auto h-28 sm:h-36">
+                <div class="flex justify-between items-start mb-2">
+                    <span class="text-xs sm:text-sm md:text-base font-medium text-brand-text/90">Humidity</span>
+                    <svg class="h-5 w-5 sm:h-6 sm:w-6 lg:h-7 lg:w-7 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+                </div>
+                <div class="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-brand-text" id="val-humidity">-- <span class="text-lg sm:text-xl lg:text-2xl font-medium">%</span></div>
+            </div>
+
+            <!-- Full Spanning Row: Bill -->
+            <div class="col-span-full glass-panel p-6 sm:p-8 !rounded-2xl lg:!rounded-3xl flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors auto-rows-auto min-h-[140px] sm:min-h-[180px]">
+                <div class="w-full flex justify-between items-start absolute top-4 sm:top-6 left-0 px-6 sm:px-8">
+                    <span class="text-sm sm:text-base lg:text-lg font-medium text-brand-text/90">Estimated Bill</span>
+                    <svg class="h-6 w-6 lg:h-8 lg:w-8 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+                </div>
+                <div class="mt-6 text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-brand-text flex items-center justify-center" id="val-bill">
+                    <span class="text-3xl sm:text-4xl lg:text-5xl font-semibold opacity-90 mr-2">₹</span> --
                 </div>
             </div>
 
-            <!-- Row 2: Power -->
-            <div class="glass-panel p-4 flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors">
-                <div class="w-full flex justify-between items-start absolute top-4 left-0 px-4">
-                    <span class="text-sm sm:text-base font-medium text-brand-text/90">Power (Watts)</span>
-                    <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>
+            <!-- Full Spanning Row: Load Control -->
+            <div class="col-span-full glass-panel p-4 sm:p-6 lg:px-8 lg:py-6 !rounded-2xl lg:!rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between hover:bg-white/40 transition-colors gap-4 sm:gap-0">
+                <div class="flex items-center space-x-3 w-full sm:w-auto mb-2 sm:mb-0">
+                    <svg class="h-6 w-6 lg:h-8 lg:w-8 text-brand-text opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" /></svg>
+                    <span class="text-base sm:text-lg lg:text-xl font-medium text-brand-text">Appliance Load</span>
                 </div>
-                <div class="mt-8 mb-2 text-4xl sm:text-5xl font-semibold tracking-tight text-brand-text" id="val-power">- <span class="text-3xl sm:text-4xl font-medium">W</span></div>
-            </div>
-
-            <!-- Row 3: Energy -->
-            <div class="glass-panel p-4 flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors">
-                <div class="w-full flex justify-between items-start absolute top-4 left-0 px-4">
-                    <span class="text-sm sm:text-base font-medium text-brand-text/90">Energy (Joules)</span>
-                    <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" /><path stroke-linecap="round" stroke-linejoin="round" d="m11.5 6.5-3 5h4l-1 5" /></svg>
-                </div>
-                <div class="mt-8 mb-2 text-4xl sm:text-5xl font-semibold tracking-tight text-brand-text" id="val-energy">- <span class="text-3xl sm:text-4xl font-medium">J</span></div>
-            </div>
-
-            <!-- Row 4: Bill -->
-            <div class="glass-panel p-4 flex flex-col justify-center items-center relative hover:bg-white/40 transition-colors">
-                <div class="w-full flex justify-between items-start absolute top-4 left-0 px-4">
-                    <span class="text-sm sm:text-base font-medium text-brand-text/90">Bill (Rupees)</span>
-                    <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
-                </div>
-                <div class="mt-8 mb-2 text-4xl sm:text-5xl font-semibold tracking-tight text-brand-text flex items-center gap-2" id="val-bill"><span class="text-3xl sm:text-4xl font-semibold">₹</span> -</div>
-            </div>
-
-            <!-- Row 5: Load Control -->
-            <div class="glass-panel p-4 flex items-center justify-between">
-                <span class="text-lg sm:text-xl font-medium text-brand-text ml-2">Load</span>
-                <div class="flex items-center space-x-2 mr-2">
-                    <button id="btn-load-on" class="btn-on border border-emerald-300/50 rounded-full px-6 py-2 flex items-center space-x-2 text-brand-text font-medium transition-transform active:scale-95 focus:outline-none">
-                        <span>ON</span>
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                    </button>
-                    <button id="btn-load-off" class="glass-panel !rounded-full !shadow-none border border-gray-400/30 px-6 py-2 flex items-center space-x-2 text-brand-text/80 font-medium transition-transform active:scale-95 focus:outline-none hover:bg-white/30">
-                        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5.636 5.636a9 9 0 1012.728 0M12 3v9" /></svg>
-                        <span>OFF</span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Row 6: Temperature & Humidity -->
-            <div class="grid grid-cols-2 gap-4">
-                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Temperature (°C)</span>
-                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19c-1.657 0-3-1.343-3-3 0-1.313.826-2.43 2-2.828V5a3 3 0 116 0v8.172c1.174.398 2 1.515 2 2.828 0 1.657-1.343 3-3 3H9z" /><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01" /></svg>
-                    </div>
-                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-temp">- <span class="text-2xl sm:text-3xl font-medium">°C</span></div>
-                </div>
-                <div class="glass-panel p-4 flex flex-col justify-between hover:bg-white/40 transition-colors">
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-sm sm:text-base font-medium text-brand-text/90">Humidity (%)</span>
-                        <svg class="h-6 w-6 text-brand-text" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
-                    </div>
-                    <div class="text-3xl sm:text-4xl font-semibold tracking-tight text-brand-text" id="val-humidity">- <span class="text-2xl sm:text-3xl font-medium">%</span></div>
+                <div class="flex items-center w-full sm:w-auto space-x-3 sm:space-x-4">
+                    <button id="btn-load-on" class="btn-on border border-emerald-300/50 rounded-full flex-1 sm:w-32 lg:w-40 py-3 sm:py-4 flex items-center justify-center text-brand-text font-bold transition-transform active:scale-95 focus:outline-none text-sm sm:text-base lg:text-lg shadow-sm hover:shadow-md">ON</button>
+                    <button id="btn-load-off" class="glass-panel !rounded-full !shadow-none ring-1 ring-inset ring-brand-text/20 flex-1 sm:w-32 lg:w-40 py-3 sm:py-4 flex items-center justify-center text-brand-text/70 font-semibold transition-transform active:scale-95 focus:outline-none text-sm sm:text-base lg:text-lg hover:bg-white/40 hover:text-brand-text">OFF</button>
                 </div>
             </div>
         </main>
@@ -549,6 +543,8 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                const displayName = user.displayName || (user.email ? user.email.split('@')[0] : 'User');
+                document.getElementById('user-greeting').textContent = `HI, ${displayName.toUpperCase()}`;
                 showDashboardFromAuth();
             } else {
                 if(!dashboardView.classList.contains('hidden')) {
@@ -599,19 +595,19 @@
             onValue(ref(database, 'energy'), (snapshot) => {
                 const data = snapshot.val();
                 if(data) {
-                    if(data.voltage !== undefined) ui.v.innerHTML = `${data.voltage} <span class="text-2xl sm:text-3xl font-medium">V</span>`;
-                    if(data.current !== undefined) ui.i.innerHTML = `${data.current} <span class="text-2xl sm:text-3xl font-medium">A</span>`;
-                    if(data.power !== undefined) ui.p.innerHTML = `${data.power} <span class="text-3xl sm:text-4xl font-medium">W</span>`;
-                    if(data.energy !== undefined) ui.e.innerHTML = `${Number(data.energy).toLocaleString()} <span class="text-3xl sm:text-4xl font-medium">J</span>`;
-                    if(data.bill !== undefined) ui.b.innerHTML = `<span class="text-3xl sm:text-4xl font-semibold">₹</span> ${Number(data.bill).toFixed(2)}`;
+                    if(data.voltage !== undefined) ui.v.innerHTML = `${data.voltage} <span class="text-lg sm:text-xl lg:text-2xl font-medium">V</span>`;
+                    if(data.current !== undefined) ui.i.innerHTML = `${data.current} <span class="text-lg sm:text-xl lg:text-2xl font-medium">A</span>`;
+                    if(data.power !== undefined) ui.p.innerHTML = `${data.power} <span class="text-lg sm:text-xl lg:text-2xl font-medium">W</span>`;
+                    if(data.energy !== undefined) ui.e.innerHTML = `${Number(data.energy).toLocaleString()} <span class="text-lg sm:text-xl lg:text-2xl font-medium">J</span>`;
+                    if(data.bill !== undefined) ui.b.innerHTML = `<span class="text-3xl sm:text-4xl lg:text-5xl font-semibold opacity-90 mr-2">₹</span> ${Number(data.bill).toFixed(2)}`;
                 }
             });
 
             onValue(ref(database, 'environment'), (snapshot) => {
                 const data = snapshot.val();
                 if(data) {
-                    if(data.temperature !== undefined) ui.t.innerHTML = `${data.temperature} <span class="text-2xl sm:text-3xl font-medium">°C</span>`;
-                    if(data.humidity !== undefined) ui.h.innerHTML = `${data.humidity} <span class="text-2xl sm:text-3xl font-medium">%</span>`;
+                    if(data.temperature !== undefined) ui.t.innerHTML = `${data.temperature} <span class="text-lg sm:text-xl lg:text-2xl font-medium">°C</span>`;
+                    if(data.humidity !== undefined) ui.h.innerHTML = `${data.humidity} <span class="text-lg sm:text-xl lg:text-2xl font-medium">%</span>`;
                 }
             });
 
