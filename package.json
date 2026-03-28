@@ -1,0 +1,27 @@
+{
+  "name": "spark",
+  "version": "1.0.0",
+  "description": "**SPARK** is an elegant, real-time web-based platform that provides granular visibility into energy consumption. By interfacing with smart hardware (e.g., ESP8266), SPARK translates raw telemetry data into clear, actionable, and aesthetic insights to help users balance their load control and manage energy footprints effectively.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raavipremkumar/SPARK.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/raavipremkumar/SPARK/issues"
+  },
+  "homepage": "https://github.com/raavipremkumar/SPARK#readme",
+  "devDependencies": {
+    "vite": "^8.0.3"
+  },
+  "dependencies": {
+    "firebase": "^12.11.0"
+  }
+}
