@@ -424,13 +424,19 @@
             toggleBtn.setAttribute('aria-checked', loginTermsAccepted);
             
             if(loginTermsAccepted) {
-                toggleBtn.classList.replace('bg-brand-text/40', 'bg-brand-darkgreen');
-                toggleKnob.classList.replace('translate-x-0', 'translate-x-5');
-                toggleKnob.classList.replace('bg-gray-200', 'bg-brand-lightgreen');
+                toggleBtn.classList.remove('bg-brand-text/40');
+                toggleBtn.classList.add('bg-brand-darkgreen');
+                toggleKnob.classList.remove('translate-x-0');
+                toggleKnob.classList.add('translate-x-5');
+                toggleKnob.classList.remove('bg-gray-200');
+                toggleKnob.classList.add('bg-brand-lightgreen');
             } else {
-                toggleBtn.classList.replace('bg-brand-darkgreen', 'bg-brand-text/40');
-                toggleKnob.classList.replace('translate-x-5', 'translate-x-0');
-                toggleKnob.classList.replace('bg-brand-lightgreen', 'bg-gray-200');
+                toggleBtn.classList.remove('bg-brand-darkgreen');
+                toggleBtn.classList.add('bg-brand-text/40');
+                toggleKnob.classList.remove('translate-x-5');
+                toggleKnob.classList.add('translate-x-0');
+                toggleKnob.classList.remove('bg-brand-lightgreen');
+                toggleKnob.classList.add('bg-gray-200');
             }
             loginBtn.disabled = !loginTermsAccepted;
             googleBtn.disabled = !loginTermsAccepted;
@@ -489,13 +495,19 @@
             signupToggleBtn.setAttribute('aria-checked', signupTermsAccepted);
             
             if(signupTermsAccepted) {
-                signupToggleBtn.classList.replace('bg-brand-text/40', 'bg-brand-darkgreen');
-                signupToggleKnob.classList.replace('translate-x-0', 'translate-x-5');
-                signupToggleKnob.classList.replace('bg-gray-200', 'bg-brand-lightgreen');
+                signupToggleBtn.classList.remove('bg-brand-text/40');
+                signupToggleBtn.classList.add('bg-brand-darkgreen');
+                signupToggleKnob.classList.remove('translate-x-0');
+                signupToggleKnob.classList.add('translate-x-5');
+                signupToggleKnob.classList.remove('bg-gray-200');
+                signupToggleKnob.classList.add('bg-brand-lightgreen');
             } else {
-                signupToggleBtn.classList.replace('bg-brand-darkgreen', 'bg-brand-text/40');
-                signupToggleKnob.classList.replace('translate-x-5', 'translate-x-0');
-                signupToggleKnob.classList.replace('bg-brand-lightgreen', 'bg-gray-200');
+                signupToggleBtn.classList.remove('bg-brand-darkgreen');
+                signupToggleBtn.classList.add('bg-brand-text/40');
+                signupToggleKnob.classList.remove('translate-x-5');
+                signupToggleKnob.classList.add('translate-x-0');
+                signupToggleKnob.classList.remove('bg-brand-lightgreen');
+                signupToggleKnob.classList.add('bg-gray-200');
             }
             submitSignupBtn.disabled = !signupTermsAccepted;
             signupGoogleBtn.disabled = !signupTermsAccepted;
